@@ -4,7 +4,7 @@
     <!-- Estilos de Tui Calendar y Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.css" />
-    <link rel="stylesheet" href="css/tooltip.css.css">
+    <link rel="stylesheet" href="css/tooltip.css">
     <!-- Contenedor para el calendario -->
     <div id="calendar" style="width: 100%; height: 100%;"></div>
 
@@ -169,12 +169,12 @@
                 defaultView: 'week',
                 taskView: false,
                 scheduleView: true,
-                useCreationPopup: false, // Desactivar el popup predeterminado
+                useCreationPopup: false,
                 useDetailPopup: false,
-                draggable: true, // Habilitar arrastrar y soltar
-                timezone: 'America/El_Salvador'
+                draggable: true,
+                timezone: 'America/El_Salvador',
+                
             });
-        
             console.log("TUI Calendar inicializado.");
         
             // Función para mostrar/ocultar campos adicionales en función de la selección del usuario

@@ -8,3 +8,9 @@
     font-size: 12px;
     z-index: 1000;
 }
+
+.tui-full-calendar-time-schedule-content {
+    white-space: pre-line;
+    line-height: 2;  /* Ajusta este valor según tus necesidades */
+}
+
