@@ -1,0 +1,60 @@
+body {
+    background-color: #3217ea;
+    color: #ffffff; /* Cambiado a blanco para mejorar legibilidad */
+    font-family: 'Arial', sans-serif; /* Añadida una tipografía estándar */
+}
+
+.navbar {
+    background-color: #2511be;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.2); /* Sombra agregada */
+}
+
+.navbar-brand {
+    display: flex; 
+    align-items: center;
+    font-size: 1.1em; /* Aumenta el tamaño del texto del logo para más visibilidad */
+}
+
+.navbar-brand img {
+    width: 140px; /* Aumentado el tamaño del logo */
+    height: auto;
+    margin-right: 15px;
+}
+
+.nav-link {
+    color: #ffffff; 
+    padding: 10px 15px; /* padding aumentado */
+    transition: background-color 0.3s, color 0.3s; /* Transición para fondo y color */
+}
+
+.nav-link:hover {
+    background-color: #0c0667; /* fondo oscuro en hover */
+    color: #ffffff; /* Color blanco al hacer hover para mejor legibilidad */
+}
+
+.container {
+    background-color: rgba(25, 12, 146, 0.9); /* Fondo semi-transparente */
+    padding: 40px;
+    border-radius: 5px;
+    max-width: 1200px;
+    margin: auto;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3); /* Sombra suave alrededor del contenedor */
+}
+
+h1 {
+    font-weight: bold; /* Añadida negrita para resaltar el título */
+}
+
+p.lead {
+    font-size: 1.2em; /* Aumentado el tamaño del texto para el párrafo lead */
+}
+
+.btn {
+    font-weight: bold; /* Negrita para los botones */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave para cambios de color */
+}
+
+.btn:hover {
+    background-color: #0c0667;
+    color: #ffffff;
+}
