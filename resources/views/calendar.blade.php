@@ -173,7 +173,8 @@
                 useDetailPopup: false,
                 draggable: true,
                 timezone: 'America/El_Salvador',
-                
+                hourHeight: 70, // puedes ajustar este valor
+
             });
             console.log("TUI Calendar inicializado.");
         

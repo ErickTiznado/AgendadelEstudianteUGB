@@ -10,7 +10,13 @@
 }
 
 .tui-full-calendar-time-schedule-content {
-    white-space: pre-line;
-    line-height: 2;  /* Ajusta este valor según tus necesidades */
+    line-height: 1.5;  /* Ajusta este valor según tus necesidades */
 }
 
+.tui-full-calendar-time-schedule {
+    margin: 0;
+    padding: 1px 3px;  
+}
+.tui-full-calendar-time-schedule .tui-full-calendar-content {
+    overflow: hidden;
+}

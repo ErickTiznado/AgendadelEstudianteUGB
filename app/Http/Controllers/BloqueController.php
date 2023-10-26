@@ -133,13 +133,13 @@ public function update(Request $request, Bloque $bloque)
             ];
             // Formatear el título según el tipo de bloque
             if ($bloque->tipo === 'Clase') {
-                $baseData['title'] = $bloque->materia . " - " . $bloque->docente . "\n" . 
+                $baseData['title'] = $bloque->TItulo . "\n" . 
                                      Carbon::parse($bloque->inicio)->format('H:i') . " - " . 
                                      Carbon::parse($bloque->fin)->format('H:i');
             } else {
-                $baseData['title'] = $bloque->titulo . "\n" . 
-                Carbon::parse($bloque->inicio)->format('H:i') . " - " . 
-                Carbon::parse($bloque->fin)->format('H:i');
+                $baseData['title'] = $bloque->TItulo . "\n" . 
+                                     Carbon::parse($bloque->inicio)->format('H:i') . " - " . 
+                                     Carbon::parse($bloque->fin)->format('H:i');
             }
     
             $baseData['body'] = [
