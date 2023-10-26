@@ -77,7 +77,7 @@
                         </div>
                         <!-- Campo Recordatorio -->
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="recordatorio" name="recordatorio">
+                            <input type="checkbox" class="form-check-input" id="recordatorio" name="recordatorio" value="1">
                             <label class="form-check-label" for="recordatorio">Establecer recordatorio</label>
                         </div>
     

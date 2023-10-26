@@ -119,6 +119,7 @@ public function update(Request $request, Bloque $bloque)
 
     public function getBloques() {
         $bloques = auth()->user()->bloques;
+        
         $formattedBloques = [];
     
         foreach ($bloques as $bloque) {
@@ -130,15 +131,15 @@ public function update(Request $request, Bloque $bloque)
                 'category' => 'time',
                 'bgColor' => $bloque->color,
             ];
-    
             // Formatear el título según el tipo de bloque
             if ($bloque->tipo === 'Clase') {
-                $baseData['title'] = $bloque->materia . "\n" . $bloque->docente . "\r\n" . 
+                $baseData['title'] = $bloque->materia . " - " . $bloque->docente . "\n" . 
                                      Carbon::parse($bloque->inicio)->format('H:i') . " - " . 
                                      Carbon::parse($bloque->fin)->format('H:i');
             } else {
-                $baseData['title'] = Carbon::parse($bloque->inicio)->format('H:i') . " - " . 
-                                     Carbon::parse($bloque->fin)->format('H:i');
+                $baseData['title'] = $bloque->titulo . "\n" . 
+                Carbon::parse($bloque->inicio)->format('H:i') . " - " . 
+                Carbon::parse($bloque->fin)->format('H:i');
             }
     
             $baseData['body'] = [
@@ -146,10 +147,24 @@ public function update(Request $request, Bloque $bloque)
             ];
     
             $formattedBloques[] = $baseData;
+    
+            // Si el bloque es de tipo "Sueño" o "Comida", generamos bloques repetidos
+            if (in_array($bloque->tipo, ['Sueño', 'Comida'])) {
+                for ($i = -365; $i <= 365; $i++){  
+                    // Excluir el día actual para evitar duplicación
+                    if ($i == 0) {
+                        continue;
+                    }
+                    
+                    $newBlock = $baseData;
+                    $newBlock['start'] = Carbon::parse($bloque->inicio)->addDays($i);
+                    $newBlock['end'] = Carbon::parse($bloque->fin)->addDays($i);
+                    $formattedBloques[] = $newBlock;
+                }
+            }
         }
     
         return response()->json($formattedBloques);
     }
-    
     
 }
