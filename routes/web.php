@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BloqueController;
-
+use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\NotaController;
+use App\Http\Controllers\OpenAIController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,3 +45,13 @@ Route::get('/get-bloques', [BloqueController::class, 'getBloques']);
 Route::put('/update-bloque/{bloque}', [BloqueController::class, 'update']);
 
 Route::delete('/delete-bloque/{bloque}', [BloqueController::class, 'destroy']);
+
+Route::resource('materias', MateriaController::class);
+
+Route::resource('notas', NotaController::class);
+
+Route::post('/Asistente/chat', [OpenAIController::class, 'chat']);
+
+Route::get('/asistente', function () {
+    return view('asistente');
+});

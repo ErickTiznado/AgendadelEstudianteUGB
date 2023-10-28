@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;  // Importar la clase Auth
 
 class HomeController extends Controller
 {
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // Recuperar las notificaciones del usuario autenticad
+        
+        // Pasar las notificaciones a la vista
         return view('home');
     }
 }

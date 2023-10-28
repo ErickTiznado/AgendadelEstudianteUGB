@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Notifications\Notifiable; // Añadir esta línea
+use Illuminate\Notifications\Notifiable; // Importa Notifiable
 
 class Usuario extends Model implements AuthenticatableContract
 {
-    use HasFactory, Authenticatable, Notifiable; // Añadir Notifiable aquí
+    use HasFactory, Authenticatable, Notifiable; // Utiliza Notifiable junto con los otros traits
 
     protected $table = 'usuarios';
 
@@ -47,4 +47,14 @@ class Usuario extends Model implements AuthenticatableContract
     {
         return $this->hasMany(HorarioEstudioOptimizado::class);
     }
+
+    public function notas()
+{
+    return $this->hasMany(Nota::class);
+}
+
+public function getEmailForVerification()
+{
+    return $this->correo_institucional;
+}
 }

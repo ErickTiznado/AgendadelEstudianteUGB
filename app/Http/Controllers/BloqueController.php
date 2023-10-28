@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 use App\Models\Bloque;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB; // Necesario para usar la base de datos
 
 class BloqueController extends Controller
 {
@@ -15,17 +17,21 @@ class BloqueController extends Controller
     }
 
     // Mostrar un bloque específico
-public function show(Bloque $bloque)
-{
-    return view('bloques.show', compact('bloque'));
-}
-
+    public function show(Bloque $bloque)
+    {
+        return view('bloques.show', compact('bloque'));
+    }
 
     // Listar todos los bloques del usuario
     public function index()
     {
         $bloques = auth()->user()->bloques;
-        return view('bloques.index', compact('bloques'));
+        
+        // Recuperar las notificaciones del usuario actual
+        $notificaciones = DB::table('notifications')->where('usuario_id', auth()->user()->id)->get();
+
+        // Pasa las notificaciones y los bloques a la vista
+        return view('bloques.index', compact('bloques', 'notificaciones'));
     }
 
     // Mostrar el formulario para crear un nuevo bloque
@@ -73,7 +79,7 @@ public function show(Bloque $bloque)
     
         $bloque = Bloque::create($data);
     
-        return view("calendar");
+        return view("home");
     }
 
 
@@ -103,7 +109,8 @@ public function update(Request $request, Bloque $bloque)
     // 4. Actualizar el bloque en la base de datos.
     $bloque->update($data);
 
-    return view("calendar");
+    // Pasar las notificaciones a la vista
+    return view('home');
 }
 
     
@@ -114,12 +121,15 @@ public function update(Request $request, Bloque $bloque)
     public function destroy(Bloque $bloque)
     {
         $bloque->delete();
-        return view('calendar');
+        
+    
+        // Pasar las notificaciones a la vista
+        return view('home');
     }
 
     public function getBloques() {
         $bloques = auth()->user()->bloques;
-        
+
         $formattedBloques = [];
     
         foreach ($bloques as $bloque) {
@@ -130,22 +140,20 @@ public function update(Request $request, Bloque $bloque)
                 'end' => $bloque->fin,
                 'category' => 'time',
                 'bgColor' => $bloque->color,
-            ];
+                'titulo'=>$bloque->TItulo
+                            ];
             // Formatear el título según el tipo de bloque
             if ($bloque->tipo === 'Clase') {
-                $baseData['title'] = $bloque->TItulo . "\n" . 
-                                     Carbon::parse($bloque->inicio)->format('H:i') . " - " . 
-                                     Carbon::parse($bloque->fin)->format('H:i');
+                $baseData['title'] = 
+                                    $bloque->TItulo  ;
+  
             } else {
-                $baseData['title'] = $bloque->TItulo . "\n" . 
-                                     Carbon::parse($bloque->inicio)->format('H:i') . " - " . 
-                                     Carbon::parse($bloque->fin)->format('H:i');
+                $baseData['title'] = $bloque->TItulo ;
+
             }
-    
-            $baseData['body'] = [
-                'notas' => $bloque->nota
-            ];
-    
+            
+            $baseData['body'] =$bloque->Notas;
+
             $formattedBloques[] = $baseData;
     
             // Si el bloque es de tipo "Sueño" o "Comida", generamos bloques repetidos

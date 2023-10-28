@@ -68,11 +68,6 @@
                                 <div class="mt-2">
                                     <p>Aun no tienes cuenta? <a href="#" class="text-info">{{ __('Has click aqui') }}</a></p>
                                 </div>
-                                <div class="mt-2">
-                                    @if (Route::has('password.request'))
-                                        <a href="{{ route('password.request') }}" class="text-danger">{{ __('Has olvidado tu contraseña?') }}</a>
-                                    @endif
-                                </div>
                             </div>
                         </div>
                     </form>

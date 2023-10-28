@@ -12,7 +12,7 @@ class Bloque extends Model
 
     protected $fillable = [
         'usuario_id', 'tipo', 'materia', 'otros_tipo', 'inicio', 'fin', 'color', 'repetir',
-        'titulo', 'descripcion', 'notas', 'recordatorio', 'repetible', 'docente'
+        'titulo', 'notas', 'recordatorio', 'repetible', 'docente'
     ];
     
 
